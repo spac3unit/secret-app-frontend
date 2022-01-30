@@ -55,7 +55,7 @@ const SidebarContent = (props) => (
       <Image
         boxSize="50px"
         objectFit="cover"
-        src="https://cdn-icons.flaticon.com/png/512/1376/premium/1376885.png?token=exp=1643508691~hmac=a389abc09b6e0034c2bdee3ce42a05cd"
+        src="https://i.imgur.com/0NXXELk.png"
         alt="Logo"
       />
       <Text
