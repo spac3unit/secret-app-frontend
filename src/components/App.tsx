@@ -1,31 +1,34 @@
-import React from 'react';
-import { Box } from '@chakra-ui/react';
-import { Flex, Spacer, Container } from '@chakra-ui/react';
-
-import TelegramLoginButton from 'react-telegram-login';
+import { Box, useColorModeValue, useDisclosure } from '@chakra-ui/react';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { Sidebar } from './Sidebar';
+import { Header } from './Header';
 
 function App() {
-  const handleTelegramResponse = (response) => {
-    console.log(response);
-  };
+  const sidebar = useDisclosure();
   return (
-    <div className="App">
-      <Container maxW="container.xl">
-        <Flex bg="black" w="100%" p={4} color="white">
-          <Box p="4">SecretApp</Box>
-          <Spacer />
-          <Box p="4" color="white">
-            <TelegramLoginButton
-              dataOnauth={handleTelegramResponse}
-              botName="secretapplogin_bot"
-              buttonSize="medium"
-              lang="en"
-              usePic="false"
-            />
+    <Router>
+      <Box
+        as="section"
+        bg={useColorModeValue('gray.50', 'gray.700')}
+        minH="100vh"
+      >
+        <Sidebar sidebarOpts={sidebar} />
+
+        <Box ml={{ base: 0, md: 60 }} transition=".3s ease">
+          <Header sidebarOpts={sidebar} />
+
+          <Box as="main" p="4">
+            <Box borderWidth="4px" borderStyle="dashed" rounded="md" h="96">
+              <Routes>
+                <Route path="/" element={<h1>Home Page</h1>} />
+                <Route path="page2" element={<h1> Page 2</h1>} />
+                <Route path="page3" element={<h1> Page 3</h1>} />
+              </Routes>
+            </Box>
           </Box>
-        </Flex>
-      </Container>
-    </div>
+        </Box>
+      </Box>
+    </Router>
   );
 }
 
